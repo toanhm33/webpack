@@ -16,8 +16,33 @@ module.exports = {
       },
       {
         test: /\.css$/, // Sử dụng style-loader, css-loader cho file .css
-        use: ["style-loader", "css-loader"]
-      }
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          }
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // 8*1024
+            },
+          },
+        ],
+      },
     ]
   },
   // Chứa các plugins sẽ cài đặt trong tương lai
