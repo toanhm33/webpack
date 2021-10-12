@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" alt="Project logo" /></a>
+ <img width=200px height=200px src="https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg" alt="Project logo" /></a>
 </p>
 
 <h3 align="center">Webpack</h3>
@@ -14,6 +14,7 @@
 ## 📝 Table of Contents
 
 - [Webpack là gì?](#about)
+- [Giới thiệu babel](#babel)
 - [Một số khái niệm trong webpack?](#constant)
 - [Cài đặt và cấu hình webpack](#install)
 - [Tổng kết](#Tổng_Kết)
@@ -21,12 +22,33 @@
 
 
 ## Webpack là gì? <a name = "about"></a>
-Webpack là một công cụ giúp chúng ta đóng gói (bundle) các tài nguyên như js, css, images, fonts... thành một file hoặc nhiều file theo cách có tổ chức.
+* Webpack giúp chúng ta giải quyết các vấn đề:
+
+    - Hỗ trợ chuyển đổi cú pháp es6 hay es2018 để các trình duyệt cũ có thể hiểu được.
+    - Chuyển đổi Sass, Less sang css.
+    - Nén code.
+    - Hỗ trợ live reload trên môi trường dev.
+    
+* Webpack là một công cụ chạy trên môi trường NodeJs giúp chúng ta đóng gói (bundle) các tài nguyên như js, css, images, fonts... thành một file hoặc nhiều file một cách dễ dàng.
 <p align="center">
   <a href="" rel="noopener">
  <img src="https://images.viblo.asia/a8dcfe82-0c02-4c98-a305-0f9110e65f50.png" alt="Project logo" /></a>
 </p>
 
+## Giới thiệu babel <a name ="babel"></a>
+
+* Babel là trình biên dịch javascript thành các version cấp thấp hơn để phù hợp cho các trình duyệt khác nhau.
+
+* Cài đặt: 
+
+```
+    npm i @babel/core @babel/preset-env babel-loader @babel/preset-react @babel/plugin-transform-runtime --save-dev
+```
+    - @babel/core là phần lõi của babel
+    - @babel/preset-env là một bộ cài đặt giúp bạn biên dịch code Javascript về cú pháp cũ hơn
+    - @babel/plugin-transform-runtime: Giúp async await tránh bị lỗi regeneratorRuntime is not defined.
+    - @babel/preset-react : Giúp chuyển đổi JSX sang mã Javascript.
+    - babel-loader giúp bạn tích hợp babel vào trong webpack
 ## Một số khái niệm trong webpack <a name = "constant"></a>
 * Entry: file nguồn chúng ta code React.
 
@@ -72,7 +94,7 @@ module.exports = {
 
 ## Cài đặt và cấu hình project react sử dụng webpack <a name = "install"></a>
 * Trước khi bắt đầu, bạn hãy tạo một folder chứa dự án và khởi tạo NPM.
-```     
+``` 
     mkdir react-app
     cd react-app
     npm init -y
@@ -104,13 +126,8 @@ module.exports = {
 }
 ```
 
-Cấu hình file ```package.json```
+Cấu hình babel: 
 
-Cài đặt file và cấu hình babel: 
-
-```
-npm install @babel/core @babel/preset-env @babel/preset-react babel-loader --save-dev
-```
 * Chúng ta tạo file .babelrc ở file root của dự án:
     ```
     {
@@ -120,9 +137,7 @@ npm install @babel/core @babel/preset-env @babel/preset-react babel-loader --sav
         ]
     }
     ```
-  @babel/preset-env : Giúp babel chuyển đổi code ES6, ES7 và ES8 thành ES5.
-  
-  @babel/preset-react : Giúp chuyển đổi JSX sang mã Javascript.
+
 * Tiếp theo cài đặt một số module dùng để chỉnh cấu hình webpack
 
 ```
@@ -141,15 +156,14 @@ Các module bao gồm:
 10. file-loader: dùng để đọc và optimize dung lượng image với kích thước nhỏ thành dạng string bên trong javascript luôn.
 11. clean-webpack-plugin: module này nó sẽ dọn dẹp lại thư mục chứa folder build webpack
 
-* Chế độ (mode) trong Webpack:
-    - development
-    - production
+* Chế độ (mode) trong Webpack: webpack có 2 chế độ: development và production. Điểm khác biệt chính là chế độ production tự động áp dụng minification và tối ưu hóa khác vào mã code
 
 ## Tổng kết <a name = "Tổng_Kết"></a>
 
 
 ## Tài liệu tham khảo <a name = "refer"></a>
 * https://webpack.js.org/concepts/
+* https://www.valentinog.com/blog/webpack
 
 
 

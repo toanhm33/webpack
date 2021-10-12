@@ -15,6 +15,13 @@ module.exports = {
   module: {
     rules: loaders
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 9000,
+  },
   // Chứa plugins sẽ cài đặt trong tương lai
   plugins: [
     new HtmlWebpackPlugin({
