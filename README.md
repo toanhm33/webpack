@@ -154,11 +154,58 @@ Các module bao gồm:
 8. webpack-merge: dùng để ghép các file js với nhau.
 9. mini-css-extract-plugin: nó sẽ thu gọn file css.
 10. file-loader: dùng để đọc và optimize dung lượng image với kích thước nhỏ thành dạng string bên trong javascript luôn.
-11. clean-webpack-plugin: module này nó sẽ dọn dẹp lại thư mục chứa folder build webpack
+11. clean-webpack-plugin: module này nó sẽ clear hết các tệp trong folder build của webpack
 
-* Chế độ (mode) trong Webpack: webpack có 2 chế độ: development và production. Điểm khác biệt chính là chế độ production tự động áp dụng minification và tối ưu hóa khác vào mã code
+file ```webpack.config.js``` :
 
-## Tổng kết <a name = "Tổng_Kết"></a>
+```
+"use strict";
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+var loaders = require('./webpack.loaders');
+module.exports = {
+  entry: "./src/index.js", // Dẫn tới file index.js ta đã tạo
+  output: {
+    publicPath: '/',
+    path: path.join(__dirname, "/public"), // Thư mục chứa file được build ra
+    filename: "bundle.js" // Tên file được build ra
+  },
+  module: {
+    rules: loaders
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 9000,
+  },
+  // Chứa plugins sẽ cài đặt trong tương lai
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+        template: "./public/index.html"
+    }),
+    new MiniCssExtractPlugin()
+  ]
+};
+```
+* Mode trong Webpack: 
+Ta thiết lập file ```package.json```
+```
+  "scripts": {
+    "dev": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+```
+    * Với chế độ development: webpack nhận tất cả các mã javascript chúng ta viết và load chúng trong browser.
+
+    * Với chế độ production: Webpack tự động áp dụng minification và tối ưu hóa mã code
+
 
 
 ## Tài liệu tham khảo <a name = "refer"></a>

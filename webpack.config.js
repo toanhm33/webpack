@@ -2,7 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 var loaders = require('./webpack.loaders');
 module.exports = {
@@ -24,6 +24,7 @@ module.exports = {
   },
   // Chứa plugins sẽ cài đặt trong tương lai
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
         template: "./public/index.html"
     }),
