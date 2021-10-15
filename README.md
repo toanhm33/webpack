@@ -193,7 +193,8 @@ module.exports = {
   ]
 };
 ```
-* Mode trong Webpack: 
+* Mode trong Webpack: Webpack cung cấp cho ta 2 chế độ: development và production
+
 Ta thiết lập file ```package.json```
 ```
   "scripts": {
